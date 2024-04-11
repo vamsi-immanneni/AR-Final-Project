@@ -28,3 +28,27 @@ The AR Vocals Visualizer is an augmented reality application that transforms the
 ### Future Developments
 - Separate visualizations for two singers based on sound localization.
 - Enhanced graphical representation of pitch, volume, and timbre.
+
+
+# MVD
+
+# How to run
+- Install the AR-Final folder onto your computer
+- Open the file [text](AR-Final/AR-Final.xcodeproj) with XCode 15
+- Run it on an Apple device equipped with developer mode and iOS 17
+
+## Current MVD Progress
+
+- I have spent the most time learning swift, and debugging and package management took the most time, but I have gotten most of this done in the most recent few hours
+- I have successfully integrated AudioKit and AVFoundation
+- I have successfully integrated the camera and am working on implementing a human-recognition library
+- I have integrated ARKit, but have not displayed the AR letters, as I will do that after the human-recognition library
+
+
+## Video Demo Description
+- The video DemoARFinalMVD.mov is a brief demo of the current functionalities of the app
+- It does not have audio, because I couldn't record the screen and have the app function at the same time
+- It shows the current camera and pitch detection integration
+
+## Next Steps
+- If the human-recognition library integration works without many issues, I will integrate this with the shazam API to display song lyrics as well
