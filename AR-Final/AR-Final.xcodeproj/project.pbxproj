@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		882877C92BCE2F11007BC3F8 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 882877C82BCE2F11007BC3F8 /* AudioManager.swift */; };
 		88586B772BCE419400A7E9A7 /* SoundpipeAudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88586B762BCE419400A7E9A7 /* SoundpipeAudioKit */; };
+		8861CD222BE3F3A8002A0A10 /* Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8861CD212BE3F3A8002A0A10 /* Permissions.swift */; };
+		8861CD242BE3F85D002A0A10 /* ScreenRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8861CD232BE3F85D002A0A10 /* ScreenRecorder.swift */; };
 		886537282BCE44180030DF36 /* AudioKitEX in Frameworks */ = {isa = PBXBuildFile; productRef = 886537272BCE44180030DF36 /* AudioKitEX */; };
 		88668B472BCE4D960059BDB4 /* AudioKit in Frameworks */ = {isa = PBXBuildFile; productRef = 88668B462BCE4D960059BDB4 /* AudioKit */; };
 		8869C4422BCE1030007AED0D /* AR_FinalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869C4412BCE1030007AED0D /* AR_FinalApp.swift */; };
@@ -18,6 +20,7 @@
 		8869C4532BCE1036007AED0D /* AR_FinalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869C4522BCE1036007AED0D /* AR_FinalTests.swift */; };
 		8869C45D2BCE1036007AED0D /* AR_FinalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869C45C2BCE1036007AED0D /* AR_FinalUITests.swift */; };
 		8869C45F2BCE1036007AED0D /* AR_FinalUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8869C45E2BCE1036007AED0D /* AR_FinalUITestsLaunchTests.swift */; };
+		887899672BE2B5C9007A4FCB /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887899662BE2B5C9007A4FCB /* ARViewContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		882877C82BCE2F11007BC3F8 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		8861CD212BE3F3A8002A0A10 /* Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Permissions.swift; sourceTree = "<group>"; };
+		8861CD232BE3F85D002A0A10 /* ScreenRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenRecorder.swift; sourceTree = "<group>"; };
 		8869C43E2BCE1030007AED0D /* AR-Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AR-Final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8869C4412BCE1030007AED0D /* AR_FinalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AR_FinalApp.swift; sourceTree = "<group>"; };
 		8869C4432BCE1030007AED0D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +71,7 @@
 		8869C4742BCE1116007AED0D /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		8869C4772BCE1116007AED0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AuthenticationViewController.xib; sourceTree = "<group>"; };
 		8869C4792BCE1116007AED0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		887899662BE2B5C9007A4FCB /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +127,9 @@
 		8869C4402BCE1030007AED0D /* AR-Final */ = {
 			isa = PBXGroup;
 			children = (
+				8861CD212BE3F3A8002A0A10 /* Permissions.swift */,
+				887899662BE2B5C9007A4FCB /* ARViewContainer.swift */,
+				8861CD232BE3F85D002A0A10 /* ScreenRecorder.swift */,
 				882877C82BCE2F11007BC3F8 /* AudioManager.swift */,
 				8869C4412BCE1030007AED0D /* AR_FinalApp.swift */,
 				8869C4432BCE1030007AED0D /* ContentView.swift */,
@@ -314,8 +323,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8861CD242BE3F85D002A0A10 /* ScreenRecorder.swift in Sources */,
 				882877C92BCE2F11007BC3F8 /* AudioManager.swift in Sources */,
+				887899672BE2B5C9007A4FCB /* ARViewContainer.swift in Sources */,
 				8869C4442BCE1030007AED0D /* ContentView.swift in Sources */,
+				8861CD222BE3F3A8002A0A10 /* Permissions.swift in Sources */,
 				8869C4422BCE1030007AED0D /* AR_FinalApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,6 +506,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -526,6 +540,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

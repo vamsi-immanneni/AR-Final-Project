@@ -2,53 +2,57 @@
 
 ## Project Overview
 
-The AR Vocals Visualizer is an augmented reality application that transforms the way we interact with and understand vocal music. The app uses the iPhone camera and identifies singers in real-time and then overlays visual representations of their pitch directly above their heads. 
+Welcome to the AR Vocals Visualizer app! This is an augmented reality application that transforms the way we interact with and understand vocal music. 
 
-### Key Features (planned, not final)
+### Key Features 
 - **Real-Time Pitch Detection**: Uses the microphone to analyze singing pitch and displays it in real time.
 - **Augmented Reality Overlay**: Utilizes ARKit or unity to overlay pitch information above the singer's head as viewed through the iPhone's screen.
-- **Solo and Duo Mode (Future Development)**: Initially supports a single singer, but can be multiple.
-- **Sound Localization (Future Development)**: Future versions will incorporate sound localization to accurately attribute pitch visuals in environments with multiple singers.
 
-## Technology Stack
-- **ARKit**: Leverages ARKit for augmented reality overlays, providing a seamless integration of digital content with the real world.
-- **Core Audio**: Utilizes Core Audio for real-time audio processing and pitch detection.
-- **SceneKit**: Used with ARKit to  render 3D pitch visualization graphics.
-- **SwiftUI**: For building a user-friendly interface on ios.
+## Video Demo and Project Write-up
 
-## APIs and Libraries
-- **AudioKit**: An audio synthesis, processing, and analysis library, used here primarily for accurate pitch detection.
-- **AVFoundation**: For managing audio capture sessions and microphone input.
+To access the demo, navigate to the file `FinalDemo.MOV.zip` and unzip it to get the video, or click the link below:
 
-## Development Plan
-
-### MVP
-- Real-time pitch detection for a single singer with a simple visual overlay.
-
-### Future Developments
-- Separate visualizations for two singers based on sound localization.
-- Enhanced graphical representation of pitch, volume, and timbre.
+[FinalDemo.mp4](FinalDemo.mp4)
 
 
-# MVD
+To access the write-up, navigate to the file `AR_Project_Write_up.pdf`, or click the link below:
 
-# How to run
-- Install the AR-Final folder onto your computer
-- Open the file [text](AR-Final/AR-Final.xcodeproj) with XCode 15
-- Run it on an Apple device equipped with developer mode and iOS 17
+[AR Project Write-up](AR_Project_Write_up.pdf)
 
-## Current MVD Progress
+## Running the Project
 
-- I have spent the most time learning swift, and debugging and package management took the most time, but I have gotten most of this done in the most recent few hours
-- I have successfully integrated AudioKit and AVFoundation
-- I have successfully integrated the camera and am working on implementing a human-recognition library
-- I have integrated ARKit, but have not displayed the AR letters, as I will do that after the human-recognition library
+Here are some basic guidelines to run this project after cloning the repository.
+
+### Requirements:
+- **MacOS Computer**: Your Mac needs to be running a recent MacOS version that supports the latest Xcode
+- **Xcode**: The latest version of Xcode
+- **iOS Device**: An iPhone or iPad with developer mode enabled.
+- **Account**: An iOS developer account
+
+### Steps to Run the Project:
+1. **Install Xcode**:
+   - Download the latest Xcode from the [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835)
+2. **Open the Project**:
+   - Launch Xcode and open the project file (`*.xcodeproj` or `*.xcworkspace`).
+3. **Configure Your Apple Developer Account**:
+   - Go to `Xcode > Preferences > Accounts` and log in with your Apple Developer account. If you do not have one, you will need to sign up at the [Apple Developer website](https://developer.apple.com/).
+4. **Connect Your iOS Device**:
+   - Connect your iOS device to your Mac using a cable.
+   - Trust the computer if prompted on your iOS device.
+5. **Enable Developer Mode on Your iOS Device**:
+   - On your iOS device, go to `Settings > Privacy & Security > Developer Mode`
+   - Turn on Developer Mode and then follow the prompts to restart your device
+6. **Select Your Target Device in Xcode**:
+   - In Xcode, choose your  connected device (ex. My iPhone) from the list of available devices and simulators in the toolbar. You must choose a physical device with a camera.
+7. **Run the Application**:
+   - Run it in Xcode (Cmd+R). Xcode will compile the application and install it on your connected device.
+   - Once installed, the app will launch automatically on your device.
+
+### Troubleshooting:
+If you encounter issues, try restarting both devices, and clean the build in XCode. Watch out for memory overuse, as it can mess up the coding environment.
+
+### Further Learning:
+For more tips, refer to this tutorial on setting up and running Xcode projects on iOS devices: [How to Run Your App on an iOS Device](https://www.raywenderlich.com/213-how-to-run-your-app-on-an-ios-device).
 
 
-## Video Demo Description
-- The video DemoARFinalMVD.mov is a brief demo of the current functionalities of the app
-- It does not have audio, because I couldn't record the screen and have the app function at the same time
-- It shows the current camera and pitch detection integration
 
-## Next Steps
-- If the human-recognition library integration works without many issues, I will integrate this with the shazam API to display song lyrics as well

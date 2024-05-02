@@ -3,22 +3,33 @@ import AVFoundation
 import AudioKitEX
 import SoundpipeAudioKit
 import Combine
+import SwiftUI
 
 class AudioManager: ObservableObject {
     @Published var currentPitch: String = "NA"
-    @Published var currentAmplitude: String = "NA"
+    @Published var currentAmplitude: Float = 0.0
+    @Published var zDistance: Float = -0.2
+    @Published var currentMetallic: Float = 0.0
+    @Published var currentRoughness: Float = 1.0
+    @Published var currentEmissive: CGFloat = 0.0
+    @Published var currentOpacity: CGFloat = 1.0
+    @Published var isEmissive: Bool = false
+    @Published var currentScale: SIMD3<Float> = SIMD3<Float>(0.01, 0.01, 0.01)  // Initial location offset for AR text
+    @Published var currentColor: Color = .white 
+    @Published var currentFontSize: CGFloat = 10
+    @Published var currentExtrusionDepth: Float = 10
+    @Published var currentSensitivity: Float = 1
+    @Published var currentMinDepth: Float = 0
 
     var engine = AudioEngine()
     var mic: AudioEngine.InputNode!
     var tracker: PitchTap!
     var silence: Fader!
-    var timer: Timer?
 
     init() {
         setupAudioSession()
         setupAudioComponents()
-        startAudioProcessing() // Make sure to start processing upon initialization
-        setupTimer() // Setup a timer to update data every second
+        startAudioProcessing()
     }
 
     private func setupAudioSession() {
@@ -45,18 +56,11 @@ class AudioManager: ObservableObject {
             DispatchQueue.main.async {
                 let note = self?.frequencyToNoteName(frequency: pitch[0], amplitude: amp[0]) ?? "N/A"
                 self?.currentPitch = note
-                self?.currentAmplitude = "\(amp[0])"
-                print("Note: \(note), Amplitude: \(amp[0])")
+                self?.currentAmplitude = Float(amp[0])
+//                print(note)
+//                print(amp[0])
             }
         }
-
-        print("PitchTap and audio components are configured.")
-    }
-
-    private func updatePitchAndAmplitude(pitch: AUValue, amplitude: AUValue) {
-        currentPitch = pitch > 1 ? "\(pitch) Hz" : "NA"
-        currentAmplitude = "\(amplitude)"
-        print("Updated Pitch: \(currentPitch), Amplitude: \(currentAmplitude)")
     }
 
     func startAudioProcessing() {
@@ -69,49 +73,82 @@ class AudioManager: ObservableObject {
         }
     }
 
-    func stopAudioProcessing() {
-        tracker.stop()
-        engine.stop()
-        print("Audio processing stopped.")
-    }
-
-    private func setupTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.simulateDataUpdate()
-        }
-    }
-
-    private func simulateDataUpdate() {
-        print("Simulated update - Pitch: \(currentPitch), Amplitude: \(currentAmplitude)")
-    }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        timer?.invalidate()
-        stopAudioProcessing()
-        print("AudioManager is being deinitialized.")
-    }
-    
     func frequencyToNoteName(frequency: Float, amplitude: Float) -> String {
         guard frequency > 0 else {
-            return "N/A"  // Handle non-positive frequencies as "Not Applicable".
+            return "N/A"
         }
         guard amplitude > 0.05 else {
-            return "N/A"  // Handle too quiet notes
+            return "N/A"
         }
 
         let A4 = 440.0
-        let C0 = A4 * pow(2, -4.75)  // Calculate the frequency of C0 from A4
+        let C0 = A4 * pow(2, -4.75)
         let noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 
-        let halfStepsFromC0 = round(12 * log2(Double(frequency)  / C0))
+        let halfStepsFromC0 = round(12 * log2(Double(frequency) / C0))
         let noteIndex = Int(halfStepsFromC0) % 12
-        let octave = Int(halfStepsFromC0 / 12) - 1  // Adjusted for the C0 base octave
+        let octave = Int(halfStepsFromC0 / 12) - 1
 
-        // Ensure noteIndex wraps correctly by handling negative indices
         let correctedNoteIndex = (noteIndex + 12) % 12
-
         return "\(noteNames[correctedNoteIndex])\(octave)"
     }
 
+    // Methods to update material properties
+    func updateColor(_ color: Color) {
+        DispatchQueue.main.async {
+            self.currentColor = color
+        }
+    }
+    
+    func updateCurrentScale(value: SIMD3<Float>){
+        DispatchQueue.main.async {
+            self.currentScale = value
+        }
+    }
+
+    func updateMetallic(_ value: Float) {
+        DispatchQueue.main.async {
+            self.currentMetallic = value
+        }
+    }
+
+    func updateRoughness(_ value: Float) {
+        DispatchQueue.main.async {
+            self.currentRoughness = value
+        }
+    }
+
+    func updateFontSize(_ value: CGFloat) {
+        DispatchQueue.main.async {
+            self.currentFontSize = value * 2
+        }
+    }
+    
+    func updateMinDepth(_ value: Float) {
+        DispatchQueue.main.async {
+            self.currentMinDepth = value
+        }
+    }
+    
+    func updateSensitivity(_ value: Float) {
+        DispatchQueue.main.async {
+            self.currentSensitivity = value
+        }
+    }
+    
+    func updateExtrusionDepth(_ value: Float) {
+        let calcDepth = self.currentAmplitude * 10 * self.currentSensitivity
+        
+        if (calcDepth < self.currentMinDepth){
+            self.currentExtrusionDepth = self.currentMinDepth
+        } else {
+            self.currentExtrusionDepth = calcDepth
+        }
+        
+        
+        DispatchQueue.main.async {
+            self.currentExtrusionDepth = self.currentAmplitude * 10
+        }
+
+    }
 }
